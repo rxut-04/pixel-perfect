@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="fixed top-0 md:top-6 inset-x-0 max-w-5xl mx-auto z-50 px-2 sm:px-4 bg-[#050E3C]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+    <div className="fixed top-0 md:top-6 inset-x-0 max-w-5xl mx-auto z-[55] px-2 sm:px-4 bg-[#050E3C]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
       <div className="flex items-center justify-between py-3 md:py-0 mb-0 md:mb-4">
         <Link to="/" className="flex items-center gap-2 text-white font-bold text-lg sm:text-xl md:text-2xl pl-2 sm:pl-4">
           NGO CONNECT
@@ -55,13 +55,20 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div 
-          className="mobile-menu-container fixed inset-0 top-[60px] md:hidden bg-[#050E3C] z-40 overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="px-4 py-6 space-y-4">
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-[55] md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          {/* Menu */}
+          <div 
+            className="mobile-menu-container fixed left-0 right-0 top-[56px] bottom-0 md:hidden bg-[#050E3C] z-[60] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-4 py-6 space-y-4 w-full">
             <Link 
               to="/" 
               className="block text-white hover:text-[#FF3838] font-medium py-2 text-lg"
@@ -133,7 +140,7 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Desktop Menu */}
