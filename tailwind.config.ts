@@ -55,7 +55,8 @@ export default {
         'bg-navbar': "hsl(var(--bg-navbar))",
       },
       fontFamily: {
-        sans: ['Poppins', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        sans: ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        calendas: ['Playfair Display', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

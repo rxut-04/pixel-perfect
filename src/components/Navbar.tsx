@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
 import { Menu, MenuItem, HoveredLink, ProductItem } from './ui/navbar-menu';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
@@ -9,13 +8,12 @@ const Navbar: React.FC = () => {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <div className="fixed top-6 inset-x-0 max-w-5xl mx-auto z-50 px-4">
-      <div className="flex items-center justify-between mb-4">
-        <Link to="/" className="flex items-center gap-2 text-primary font-bold text-xl md:text-2xl pl-4">
-          <Heart className="w-6 h-6 md:w-8 md:h-8 fill-accent text-accent" />
-          NGO-CONNECT
+    <div className="fixed top-0 md:top-6 inset-x-0 max-w-5xl mx-auto z-50 px-2 sm:px-4 bg-[#050E3C]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+      <div className="flex items-center justify-between py-3 md:py-0 mb-0 md:mb-4">
+        <Link to="/" className="flex items-center gap-2 text-white font-bold text-lg sm:text-xl md:text-2xl pl-2 sm:pl-4">
+          NGO CONNECT
         </Link>
-        <Button className="bg-accent hover:bg-accent/90 text-white font-semibold md:hidden">
+        <Button className="bg-[#FF3838] hover:bg-[#DC0000] text-white font-semibold text-sm px-4 py-2 md:hidden">
           Donate
         </Button>
       </div>
@@ -75,7 +73,7 @@ const Navbar: React.FC = () => {
           </MenuItem>
 
           <Link to="/donate">
-            <Button className="bg-accent hover:bg-accent/90 text-white font-semibold">
+            <Button className="bg-[#FF3838] hover:bg-[#DC0000] text-white font-semibold">
               Donate Now
             </Button>
           </Link>

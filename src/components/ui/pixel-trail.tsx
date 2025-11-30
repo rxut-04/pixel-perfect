@@ -94,8 +94,8 @@ const PixelDot: React.FC<PixelDotProps> = React.memo(
       controls.start({
         opacity: [1, 0],
         transition: { duration: fadeDuration / 1000, delay: delay / 1000 },
-      });
-    }, [controls, fadeDuration, delay]);
+      })
+    }, [])
 
     const ref = useCallback(
       (node: HTMLDivElement | null) => {
