@@ -1,7 +1,6 @@
 import * as React from "react";
-
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 
 export interface Stat {
@@ -25,9 +24,9 @@ export const AnimatedHikeCard = React.forwardRef<
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
-    <a
+    <Link
       ref={ref}
-      href={href}
+      to={href}
       className={cn(
         "group relative block w-full max-w-full sm:max-w-sm cursor-pointer rounded-2xl border bg-card p-4 sm:p-6 text-card-foreground shadow-sm transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg lg:max-w-md",
         className
@@ -86,7 +85,7 @@ export const AnimatedHikeCard = React.forwardRef<
           {description}
         </p>
       </div>
-    </a>
+    </Link>
   );
 });
 
