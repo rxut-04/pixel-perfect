@@ -13,20 +13,20 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (mobileMenuOpen && !target.closest('.mobile-menu-container')) {
+      if (mobileMenuOpen && !target.closest('.mobile-menu-container') && !target.closest('button[aria-label="Toggle menu"]')) {
         setMobileMenuOpen(false);
       }
     };
 
     if (mobileMenuOpen) {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
@@ -38,13 +38,17 @@ const Navbar: React.FC = () => {
           NGO CONNECT
         </Link>
         <div className="flex items-center gap-2">
-          <Button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="bg-transparent hover:bg-[#002455] text-white p-2 md:hidden"
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            className="bg-transparent hover:bg-[#002455] text-white p-2 md:hidden rounded-md transition-colors"
             aria-label="Toggle menu"
+            type="button"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-          </Button>
+          </button>
           <Button className="bg-[#FF3838] hover:bg-[#DC0000] text-white font-semibold text-sm px-4 py-2 md:hidden">
             Donate
           </Button>
@@ -53,7 +57,10 @@ const Navbar: React.FC = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="mobile-menu-container fixed inset-0 top-[60px] md:hidden bg-[#050E3C] z-40 overflow-y-auto">
+        <div 
+          className="mobile-menu-container fixed inset-0 top-[60px] md:hidden bg-[#050E3C] z-40 overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="px-4 py-6 space-y-4">
             <Link 
               to="/" 
