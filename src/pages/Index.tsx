@@ -3,37 +3,49 @@ import { motion } from 'framer-motion';
 import { Heart, HandHeart, Users, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { PixelTrail } from '@/components/ui/pixel-trail';
+import { useScreenSize } from '@/hooks/use-screen-size';
 
 const Index = () => {
+  const screenSize = useScreenSize();
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-light-blue via-background to-bg-very-light-blue pt-20">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDc3Y2MiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtOC4yNjIgNi43MzgtMTUgMTUtMTVzMTUgNi43MzggMTUgMTUtNi43MzggMTUtMTUgMTUtMTUtNi43MzgtMTUtMTV6TTAgMTZjMC04LjI2MiA2LjczOC0xNSAxNS0xNXMxNSA2LjczOCAxNSAxNS02LjczOCAxNS0xNSAxNVM0IDI0LjI2MiA0IDE2em0wIDI4YzAtOC4yNjIgNi43MzgtMTUgMTUtMTVzMTUgNi43MzggMTUgMTUtNi43MzggMTUtMTUgMTVTMCA1Mi4yNjIgMCA0NHptMzYgMGMwLTguMjYyIDYuNzM4LTE1IDE1LTE1czE1IDYuNzM4IDE1IDE1LTYuNzM4IDE1LTE1IDE1LTE1LTYuNzM4LTE1LTE1eiIvPjwvZz48L2c+PC9zdmc+')] opacity-40"></div>
+      {/* Hero Section with Pixel Trail */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-light-blue via-background to-bg-very-light-blue">
+        {/* Pixel Trail Background */}
+        <div className="absolute inset-0 z-0">
+          <PixelTrail
+            pixelSize={screenSize.lessThan('md') ? 48 : 80}
+            fadeDuration={0}
+            delay={1200}
+            pixelClassName="rounded-full bg-accent/40"
+          />
+        </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center pointer-events-none"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-block mb-6"
+              className="inline-block mb-8"
             >
-              <Heart className="w-16 h-16 md:w-20 md:h-20 text-accent fill-accent" />
+              <Heart className="w-20 h-20 md:w-28 md:h-28 text-accent fill-accent" />
             </motion.div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-primary mb-8 leading-tight tracking-tight">
               Connecting Hearts,
               <br />
               <span className="text-accent">Transforming Lives</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
               Join us in making a difference. Every donation, every volunteer hour, 
               every act of kindness brings hope to those who need it most.
             </p>
@@ -42,22 +54,31 @@ const Index = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-6 justify-center pointer-events-auto"
             >
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-lg shadow-elevated"
+                className="bg-accent hover:bg-accent/90 text-white font-semibold px-10 py-7 text-xl shadow-elevated"
               >
                 Donate Now
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-6 text-lg"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-10 py-7 text-xl"
               >
                 Learn More
               </Button>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="mt-16 text-sm md:text-base text-muted-foreground italic"
+            >
+              ✽ Together, we create lasting change in our communities
+            </motion.p>
           </motion.div>
         </div>
       </section>
